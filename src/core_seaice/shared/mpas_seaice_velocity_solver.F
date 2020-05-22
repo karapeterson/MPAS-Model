@@ -2499,8 +2499,10 @@ contains
   subroutine ocean_stress_coefficient(domain)
 
     use seaice_constants, only: &
-         seaiceDensitySeaWater, &
-         seaiceIceOceanDragCoefficient
+         seaiceDensitySeaWater
+!         seaiceIceOceanDragCoefficient
+
+    use ice_colpkg_shared, only: dragio
 
     type(domain_type), intent(inout) :: &
          domain
@@ -2558,7 +2560,7 @@ contains
 
              if (solveVelocity(iVertex) == 1) then
 
-                oceanStressCoeff(iVertex) = seaiceIceOceanDragCoefficient * seaiceDensitySeaWater * iceAreaVertex(iVertex) * &
+                oceanStressCoeff(iVertex) = dragio * seaiceDensitySeaWater * iceAreaVertex(iVertex) * &
                      sqrt((uOceanVelocityVertex(iVertex) - uVelocity(iVertex))**2 + &
                           (vOceanVelocityVertex(iVertex) - vVelocity(iVertex))**2)
 

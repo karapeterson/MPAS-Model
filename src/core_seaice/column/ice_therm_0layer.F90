@@ -13,9 +13,10 @@
 
       use ice_kinds_mod
       use ice_constants_colpkg, only: c0, c1, p5, puny, &
-          kseaice, ksno
+          kseaice
       use ice_therm_bl99, only: surface_fluxes
       use ice_warnings, only: add_warning
+      use ice_colpkg_shared, only: ksno
 
       implicit none
 

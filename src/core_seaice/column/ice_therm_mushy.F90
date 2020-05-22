@@ -7,9 +7,10 @@ module ice_therm_mushy
   use ice_constants_colpkg, only: c0, c1, c2, c4, c8, c10, c1000, &
       p001, p01, p05, p1, p2, p5, pi, bignum, puny, ice_ref_salinity, &
       viscosity_dyn, rhow, rhoi, rhos, cp_ocn, cp_ice, Lfresh, gravit, &
-      hs_min, ksno
+      hs_min
   use ice_colpkg_shared, only: a_rapid_mode, Rac_rapid_mode, &
-      aspect_rapid_mode, dSdt_slow_mode, phi_c_slow_mode, phi_i_mushy
+      aspect_rapid_mode, dSdt_slow_mode, phi_c_slow_mode, phi_i_mushy, &
+      ksno, lambda_pond
 
   use ice_therm_shared, only: ferrmax
   use ice_warnings, only: add_warning
@@ -3151,8 +3152,8 @@ contains
          hpond     ! melt pond thickness (m)
     
     real(kind=dbl_kind), parameter :: &
-         lambda_pond = c1 / (10.0_dbl_kind * 24.0_dbl_kind * 3600.0_dbl_kind), &
          hpond0 = 0.01_dbl_kind
+         !lambda_pond = c1 / (10.0_dbl_kind * 24.0_dbl_kind * 3600.0_dbl_kind), &
 
     if (tr_pond) then
        if (apond > c0 .and. hpond > c0) then

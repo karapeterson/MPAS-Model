@@ -1447,6 +1447,11 @@
 			possible_values=""
 			icepack_name="kalg"
 		/>
+               <nml_option name="config_snow_conductivity" type="real" default_value="2.03" units=""
+                       description="Snow conductivity."
+                       possible_values=""
+                       icepack_name="ksno"
+               />
 	</nml_record>
 
 	<nml_record name="meltponds" in_defaults="true">
@@ -1533,6 +1538,11 @@
 			possible_values="Any real number between 0 and 1."
 			icepack_name="phi_i_mushy"
 		/>
+                <nml_option name="config_lambda_pond" type="real" default_value="1.574e-6" units="unitless"
+                        description="Drainage time scale of ponds"
+                        possible_values=""
+                        icepack_name="lambda_pond"
+                />
 	</nml_record>
 
 	<nml_record name="itd" in_defaults="true">
@@ -1638,6 +1648,11 @@
 			description=""
 			possible_values="true or false"
 		/>
+                <nml_option name="config_ice_ocean_drag" type="real" default_value="0.00536" units="unitless"
+                        description="Ice ocean drag coefficient"
+                        possible_values=""
+                        icepack_name="dragio"
+                />
 	</nml_record>
 
 	<nml_record name="diagnostics" in_defaults="true">

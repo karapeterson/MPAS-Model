@@ -8963,7 +8963,10 @@ contains
          config_scales_absorption_diatoms, &
          config_scales_absorption_small_plankton, &
          config_scales_absorption_phaeocystis, &
-         config_ratio_C_to_N_proteins
+         config_ratio_C_to_N_proteins, &
+         config_lambda_pond, &
+         config_ice_ocean_drag, &
+         config_snow_conductivity
 
     integer, pointer :: &
          config_boundary_layer_iteration_number
@@ -9157,6 +9160,9 @@ contains
     call MPAS_pool_get_config(domain % configs, "config_scales_absorption_small_plankton", config_scales_absorption_small_plankton)
     call MPAS_pool_get_config(domain % configs, "config_scales_absorption_phaeocystis", config_scales_absorption_phaeocystis)
     call MPAS_pool_get_config(domain % configs, "config_ratio_C_to_N_proteins", config_ratio_C_to_N_proteins)
+    call MPAS_pool_get_config(domain % configs, "config_lambda_pond", config_lambda_pond)
+    call MPAS_pool_get_config(domain % configs, "config_ice_ocean_drag", config_ice_ocean_drag)
+    call MPAS_pool_get_config(domain % configs, "config_snow_conductivity", config_snow_conductivity)
 
     call colpkg_init_parameters(&
          config_cice_int("config_thermodynamics_type", config_thermodynamics_type), &
@@ -9334,7 +9340,10 @@ contains
          config_scales_absorption_diatoms, &
          config_scales_absorption_small_plankton, &
          config_scales_absorption_phaeocystis, &
-         config_ratio_C_to_N_proteins)
+         config_ratio_C_to_N_proteins, &
+         config_lambda_pond, &
+         config_ice_ocean_drag, &
+         config_snow_conductivity)
 
     !-----------------------------------------------------------------------
     ! Parameters for thermodynamics
@@ -11990,8 +11999,10 @@ contains
 
   subroutine seaice_column_reinitialize_diagnostics_thermodynamics(domain)
 
-    use seaice_constants, only: &
-         seaiceIceOceanDragCoefficient
+    !use seaice_constants, only: &
+    !     seaiceIceOceanDragCoefficient
+
+    use ice_colpkg_shared, only: dragio
 
     type(domain_type) :: domain
 
@@ -12170,7 +12181,8 @@ contains
           call MPAS_pool_get_array(dragPool, "oceanDragCoefficient", oceanDragCoefficient)
           call MPAS_pool_get_array(dragPool, "airDragCoefficient", airDragCoefficient)
 
-          oceanDragCoefficient = seaiceIceOceanDragCoefficient
+          !oceanDragCoefficient = seaiceIceOceanDragCoefficient
+          oceanDragCoefficient = dragio
           airDragCoefficient   = seaice_column_initial_air_drag_coefficient()
 
           call MPAS_pool_get_config(block % configs, "config_use_form_drag", config_use_form_drag)

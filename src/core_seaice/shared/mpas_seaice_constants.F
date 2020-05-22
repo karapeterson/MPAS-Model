@@ -28,7 +28,6 @@ module seaice_constants
        Lfresh, &
        Pstar, &
        Cstar, &
-       dragio, &
        albocn, &
        rhofresh, &
        vonkar, &
@@ -82,8 +81,7 @@ module seaice_constants
   ! dynamics constants
   real(kind=RKIND), parameter, public :: &
        seaiceIceStrengthConstantHiblerP = Pstar, & ! P* constant in Hibler strength formulation
-       seaiceIceStrengthConstantHiblerC = Cstar, & ! C* constant in Hibler strength formulation
-       seaiceIceOceanDragCoefficient    = dragio   ! ice ocean drag coefficient
+       seaiceIceStrengthConstantHiblerC = Cstar    ! C* constant in Hibler strength formulation
 
   ! minimum sea ice area
   real(kind=RKIND), parameter, public :: &

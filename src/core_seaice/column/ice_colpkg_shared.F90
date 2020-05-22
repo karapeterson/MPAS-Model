@@ -58,7 +58,8 @@
          aspect_rapid_mode , & ! aspect ratio for rapid drainage mode (larger=wider)
          dSdt_slow_mode    , & ! slow mode drainage strength (m s-1 K-1)
          phi_c_slow_mode   , & ! liquid fraction porosity cutoff for slow mode
-         phi_i_mushy           ! liquid fraction of congelation ice
+         phi_i_mushy       , & ! liquid fraction of congelation ice
+         lambda_pond           ! drainage time scale of ponds
 
 !-----------------------------------------------------------------------
 ! Parameters for radiation
@@ -85,7 +86,8 @@
          dT_mlt   , & ! change in temp for non-melt to melt snow grain 
                       ! radius change (C)
          rsnw_mlt , & ! maximum melting snow grain radius (10^-6 m)
-         kalg         ! algae absorption coefficient for 0.5 m thick layer
+         kalg,      & ! algae absorption coefficient for 0.5 m thick layer
+         ksno         ! thermal conductivity of snow
 
       real (kind=dbl_kind), parameter, public :: &
          hi_ssl = 0.050_dbl_kind, & ! ice surface scattering layer thickness (m)
@@ -135,6 +137,9 @@
                                   ! 'minus1p8' = -1.8 C
                                   ! 'linear_salt' = -depressT * sss
                                   ! 'mushy' conforms with ktherm=2
+
+      real (kind=dbl_kind), public :: &  
+         dragio                   ! ice-ocn drag coefficient
 
 !-----------------------------------------------------------------------
 ! Parameters for the ice thickness distribution

@@ -3793,7 +3793,10 @@
            F_abs_chl_diatoms_in, &   
            F_abs_chl_sp_in, &        
            F_abs_chl_phaeo_in, &
-           ratio_C2N_proteins_in)
+           ratio_C2N_proteins_in, &
+           lambda_pond_in, &
+           dragio_in, &
+           ksno_in )
            !restore_bgc_in)
 
         use ice_colpkg_shared, only: &
@@ -3976,7 +3979,10 @@
              F_abs_chl_diatoms  , & 
              F_abs_chl_sp       , & 
              F_abs_chl_phaeo    , & 
-             ratio_C2N_proteins
+             ratio_C2N_proteins, &
+             lambda_pond, &
+             dragio, &
+             ksno
             !restore_bgc
 
 !-----------------------------------------------------------------------
@@ -4008,7 +4014,8 @@
              aspect_rapid_mode_in , & ! aspect ratio for rapid drainage mode (larger=wider)
              dSdt_slow_mode_in    , & ! slow mode drainage strength (m s-1 K-1)
              phi_c_slow_mode_in   , & ! liquid fraction porosity cutoff for slow mode
-             phi_i_mushy_in           ! liquid fraction of congelation ice
+             phi_i_mushy_in       , & ! liquid fraction of congelation ice
+             lambda_pond_in           ! drainage time scale of ponds
         
 !-----------------------------------------------------------------------
 ! Parameters for radiation
@@ -4035,7 +4042,8 @@
              dT_mlt_in   , & ! change in temp for non-melt to melt snow grain 
                              ! radius change (C)
              rsnw_mlt_in , & ! maximum melting snow grain radius (10^-6 m)
-             kalg_in         ! algae absorption coefficient for 0.5 m thick layer
+             kalg_in     , & ! algae absorption coefficient for 0.5 m thick layer
+             ksno_in         ! thermal conductivity of snow
 
 !-----------------------------------------------------------------------
 ! Parameters for ridging and strength
@@ -4081,6 +4089,9 @@
                                          ! 'minus1p8' = -1.8 C
                                          ! 'linear_salt' = -depressT * sss
                                          ! 'mushy' conforms with ktherm=2
+
+        real (kind=dbl_kind), intent(in) :: &
+             dragio_in                   ! ice-ocn drag coefficient
 
 !-----------------------------------------------------------------------
 ! Parameters for the ice thickness distribution
@@ -4453,6 +4464,9 @@
         F_abs_chl_sp       = F_abs_chl_sp_in
         F_abs_chl_phaeo    = F_abs_chl_phaeo_in
         ratio_C2N_proteins = ratio_C2N_proteins_in
+        lambda_pond = lambda_pond_in
+        dragio = dragio_in
+        ksno = ksno_in
 
       end subroutine colpkg_init_parameters
 
