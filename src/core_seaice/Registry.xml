@@ -1447,7 +1447,7 @@
 			possible_values=""
 			icepack_name="kalg"
 		/>
-               <nml_option name="config_snow_conductivity" type="real" default_value="2.03" units=""
+               <nml_option name="config_snow_conductivity" type="real" default_value="0.30" units=""
                        description="Snow conductivity."
                        possible_values=""
                        icepack_name="ksno"
@@ -1538,7 +1538,7 @@
 			possible_values="Any real number between 0 and 1."
 			icepack_name="phi_i_mushy"
 		/>
-                <nml_option name="config_lambda_pond" type="real" default_value="1.1574e-6" units="unitless"
+                <nml_option name="config_lambda_pond" type="real" default_value="1.1574074e-6" units="unitless"
                         description="Drainage time scale of ponds"
                         possible_values=""
                         icepack_name="lambda_pond"
